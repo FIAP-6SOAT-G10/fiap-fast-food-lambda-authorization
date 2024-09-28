@@ -8,10 +8,8 @@ const {
 } = require("./pools.js");
 
 module.exports.auth = async (event) => {
-
-    let rawBody = JSON.stringify(event.body);
-    let body = JSON.parse(rawBody);
-    let username = JSON.parse(body).username;
+    let body = JSON.parse(JSON.stringify(event));
+    let username = body.username;
 
     try {
         const poolId = await listPools();
